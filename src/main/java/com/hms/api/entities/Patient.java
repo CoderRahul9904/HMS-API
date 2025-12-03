@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "patients")
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
