@@ -1,4 +1,4 @@
-package com.example.hms.entity;
+package com.hms.api.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -20,7 +20,6 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotBlank
     private String firstName;
 
@@ -32,14 +31,12 @@ public class Patient {
     private LocalDate dateOfBirth;
 
     private String gender;
-
     private String phonePrimary;
 
     @Email
     private String email;
 
     private String addressLine1;
-
     private String nationalIdType;
 
     @Column(unique = true)
@@ -48,14 +45,12 @@ public class Patient {
     private String emergencyContactName;
 
     private String emergencyContactPhone;
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     @Version
     private Integer version;
-
     @PrePersist
     void onCreate() {
         this.createdAt = LocalDateTime.now();
@@ -65,4 +60,5 @@ public class Patient {
     void onUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
 }
