@@ -29,4 +29,10 @@ public class PatientTest {
         Patient p = patientService.getPatientById(1L);
         System.out.println(p);
     }
+
+    @Test
+    public void testPutPatient(){
+        Patient p=new Patient();
+
+    }
 }
