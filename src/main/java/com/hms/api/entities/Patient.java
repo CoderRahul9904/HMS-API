@@ -1,5 +1,6 @@
 package com.hms.api.entities;
 
+import com.hms.api.entities.type.BloodGroupType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -41,6 +42,9 @@ public class Patient {
 
     @Column(unique = true)
     private String nationalId;
+
+    @Enumerated(EnumType.STRING)
+    private BloodGroupType bloodGroupType;
 
     private String emergencyContactName;
 
