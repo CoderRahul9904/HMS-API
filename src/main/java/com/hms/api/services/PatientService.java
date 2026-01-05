@@ -1,8 +1,7 @@
 package com.hms.api.services;
 
-import com.hms.api.entities.Patient;
+import com.hms.api.entity.Patient;
 import com.hms.api.repository.PatientRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service

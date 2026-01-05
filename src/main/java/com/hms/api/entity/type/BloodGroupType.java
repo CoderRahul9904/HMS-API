@@ -1,4 +1,4 @@
-package com.hms.api.entities.type;
+package com.hms.api.entity.type;
 
 public enum BloodGroupType {
     A_POSITIVE,

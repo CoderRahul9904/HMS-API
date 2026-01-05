@@ -1,6 +1,6 @@
 package com.hms.api;
 
-import com.hms.api.entities.Patient;
+import com.hms.api.entity.Patient;
 import com.hms.api.repository.PatientRepository;
 import com.hms.api.services.PatientService;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package com.hms.api.entities;
+package com.hms.api.entity;
 
-import com.hms.api.entities.type.BloodGroupType;
+import com.hms.api.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
