@@ -20,8 +20,12 @@ public class PatientService {
 
         System.out.println(patient1);
 
-        patient1.setFirstName("Rahul");
+//        patient1.setFirstName("Rahul");
 
         return patient1;
+    }
+
+    public Patient putPatient(Patient patient) {
+        return patientRepository.save(patient);
     }
 }
