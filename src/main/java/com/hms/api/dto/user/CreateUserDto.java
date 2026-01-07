@@ -16,5 +16,4 @@ public class CreateUserDto {
     private String email;
     private String fullName;
     private Role role;
-    private Long staffId;
 }
