@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
         indexes = {@Index(name = "idx_users_username", columnList = "username")})
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Builder
 public class User {
 
     @Id
@@ -44,8 +43,8 @@ public class User {
     @Column(length = 32, nullable = false)
     private Role role = Role.PATIENT;
 
-    @Column(name = "staff_id")
-    private Long staffId;
+    @Column(name = "staff_code")
+    private String staffCode;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
