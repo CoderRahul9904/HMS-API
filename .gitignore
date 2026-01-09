@@ -12,7 +12,8 @@ target/
 .settings
 .springBeans
 .sts4-cache
-HMS-API/src/main/resources/application.properties
+src/main/resources/application.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
