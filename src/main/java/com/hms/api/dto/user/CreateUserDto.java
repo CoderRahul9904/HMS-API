@@ -2,11 +2,12 @@ package com.hms.api.dto.user;
 
 import com.hms.api.entity.type.Role;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
 
 @Data
+@Getter
+@Setter
 public class CreateUserDto {
-
     @NotBlank
     private String username;
 
