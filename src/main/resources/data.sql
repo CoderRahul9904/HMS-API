@@ -63,3 +63,83 @@ VALUES ('Suresh', NULL, 'Yadav', '1984-02-11', 'Male', '+919700998877', 'suresh.
 
 INSERT INTO patients (first_name, middle_name, last_name, date_of_birth, gender, phone_primary, email, address_line1, national_id_type, national_id, blood_group_type, emergency_contact_name, emergency_contact_phone, created_at, version)
 VALUES ('Tanvi', NULL, 'Mehta', '1999-04-08', 'Female', '+919855667788', 'tanvi.mehta@example.com', 'Ellis Bridge, Ahmedabad', 'Aadhaar', '967890123456', 'O_POSITIVE', 'Harsh Mehta', '+919811445566', '2025-10-01 09:45:00', 0);
+
+
+-- =========================
+-- USERS
+-- =========================
+
+INSERT INTO users (
+    username,
+    password_hash,
+    email,
+    full_name,
+    role,
+    staff_code,
+    is_active,
+    created_at
+) VALUES
+      ('CoderRahul9904',
+       'Rahul@9904',
+       'rahul.admin@hms.com',
+       'Rahul Mourya',
+       'ADMIN',
+       'ADM00001',
+       true,
+       now()
+      ),
+      ('dr.singh',
+       '1234',
+       'dr.singh@hms.com',
+       'Dr. Ankit Singh',
+       'DOCTOR',
+       'D00002',
+       true,
+       now()
+      ),
+      ('nurse.priya',
+       '1234',
+       'priya.nurse@hms.com',
+       'Priya Sharma',
+       'NURSE',
+       'N00003',
+       true,
+       now()
+      ),
+      ('reception.ravi',
+       '1234',
+       'ravi.reception@hms.com',
+       'Ravi Verma',
+       'RECEPTIONIST',
+       'REC00004',
+       true,
+       now()
+      ),
+      ('billing.sunita',
+       '1234',
+       'sunita.billing@hms.com',
+       'Sunita Mehta',
+       'BILLER',
+       'B00005',
+       true,
+       now()
+      );
+
+-- =========================
+-- STAFF
+-- =========================
+
+INSERT INTO staff (
+    staff_code,
+    first_name,
+    last_name,
+    department,
+    designation,
+    role,
+    joining_date
+) VALUES
+      ('ADM00001', 'Rahul', 'Mourya', 'Administration', 'System Admin', 'ADMIN', '2023-01-10'),
+      ('D00002', 'Ankit', 'Singh', 'Cardiology', 'Senior Doctor', 'DOCTOR', '2022-06-15'),
+      ('N00003', 'Priya', 'Sharma', 'Nursing', 'Staff Nurse', 'NURSE', '2023-03-20'),
+      ('REC00004', 'Ravi', 'Verma', 'Front Desk', 'Receptionist', 'RECEPTIONIST', '2023-08-01'),
+      ('B00005', 'Sunita', 'Mehta', 'Billing', 'Billing Executive', 'BILLER', '2023-09-12');
