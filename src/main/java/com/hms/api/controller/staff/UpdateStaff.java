@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class UpdateStaff {
 
@@ -21,13 +21,6 @@ public class UpdateStaff {
         return ResponseEntity.ok(staffService.createStaff(userId,createStaffDto));
     }
 
-    @PostMapping("/users/create/{userId}")
-    public ResponseEntity<CreateStaffDto> registerStaffInfo(@PathVariable String userId, @RequestBody CreateStaffDto createStaffDto) {
-        return ResponseEntity.ok(staffService.createStaff(userId,createStaffDto));
-    }
 
-    @PostMapping("/users/login/{staffId}")
-    public ResponseEntity<LoginStaffResponseDto> loginStaff(@PathVariable Long staffId) {
-        return ResponseEntity.ok(staffService.)
-    }
+
 }
