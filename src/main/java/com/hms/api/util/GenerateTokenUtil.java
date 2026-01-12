@@ -1,9 +1,7 @@
 package com.hms.api.util;
 
-import com.hms.api.dto.user.CreateUserDto;
 import com.hms.api.entity.User;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import javax.crypto.SecretKey;
@@ -11,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 
-public class GenerateJwtToken {
+public class GenerateTokenUtil {
 
     @Value("${jwt.secretKey}")
     private String jwtSecret;
@@ -21,7 +19,7 @@ public class GenerateJwtToken {
     }
 
 
-    public String generateJwtToken(User user) {
+    public String generateJwtAccessToken(User user) {
             return Jwts.builder()
                     .subject(user.getUsername())
                     .claim("userId", user.getId())

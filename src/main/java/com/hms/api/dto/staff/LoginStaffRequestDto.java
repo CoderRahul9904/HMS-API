@@ -9,5 +9,5 @@ import lombok.*;
 @Getter
 public class LoginStaffRequestDto {
     private String username;
-    private String staffCode;
+    private String password;
 }
