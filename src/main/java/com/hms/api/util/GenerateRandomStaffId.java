@@ -14,14 +14,13 @@ public class GenerateRandomStaffId {
         this.jdbc = jdbc;
     }
 
-    public long nextStaffSeq() {
-        return jdbc.queryForObject("select nextval('staff_seq')", Long.class);
-    }
 
-    public String generateEmployeeCode(Role role) {
-        long seq = nextStaffSeq();
+    public String generateEmployeeCode(Role role, Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("User ID must not be null when generating staff code");
+        }
+
         String prefix;
-
         switch (role) {
             case DOCTOR -> prefix = "D";
             case NURSE -> prefix = "N";
@@ -31,6 +30,6 @@ public class GenerateRandomStaffId {
             default -> prefix = "S";
         }
 
-        return String.format("%s%05d", prefix, seq);
+        return String.format("%s%05d", prefix, id);
     }
 }

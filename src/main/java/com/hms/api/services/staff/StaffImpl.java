@@ -9,6 +9,6 @@ import com.hms.api.entity.Staff;
 
 public interface StaffImpl {
     CreateStaffDto createStaff(String id,CreateStaffDto createStaffDto);
-    LoginStaffResponseDto loginStaff(Long staffId);
+    LoginStaffResponseDto loginStaff(String staffCode, LoginStaffRequestDto dto);
 
 }

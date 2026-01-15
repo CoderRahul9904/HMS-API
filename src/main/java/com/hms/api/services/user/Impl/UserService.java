@@ -3,6 +3,7 @@ package com.hms.api.services.user.Impl;
 import com.hms.api.dto.user.CreateUserDto;
 import com.hms.api.dto.user.UserResponseDto;
 import com.hms.api.entity.User;
+import com.hms.api.entity.type.Role;
 import com.hms.api.repository.UserRepository;
 import com.hms.api.services.user.UserImpl;
 import com.hms.api.util.GenerateRandomStaffId;
@@ -29,16 +30,22 @@ public class UserService implements UserImpl {
     }
 
     @Override
-    public UserResponseDto createUser(CreateUserDto createUserDto) {
-        if (userRepository.existsByUsername(createUserDto.getUsername())) {
-            throw new RuntimeException("Username already exists");
+    public UserResponseDto createUser(CreateUserDto dto) {
+        if (userRepository.existsByUsername(dto.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
         }
-        String passwordHash= passwordEncoder.encode(createUserDto.getPassword());
-        User user=modelMapper.map(createUserDto, User.class);
-        user.setPasswordHash(passwordHash);
-        user.setStaffCode(generateRandomStaffId.generateEmployeeCode(user.getRole()));
-        User actualUser=userRepository.save(user);
-        return modelMapper.map(actualUser, UserResponseDto.class);
+        User user = modelMapper.map(dto, User.class);
+        user.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
+        user = userRepository.save(user);
+        if (user.getRole() != Role.PATIENT) {
+            user.setStaffCode(
+                    generateRandomStaffId.generateEmployeeCode(
+                            user.getRole(),
+                            user.getId()
+                    )
+            );
+        }
+        return modelMapper.map(user, UserResponseDto.class);
     }
 }
 

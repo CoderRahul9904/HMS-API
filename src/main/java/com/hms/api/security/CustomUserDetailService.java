@@ -4,8 +4,9 @@ import com.hms.api.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class CustomUserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -19,8 +20,4 @@ public class CustomUserDetailService implements UserDetailsService {
         return userRepository.findByUsername(username).orElseThrow();
     }
 
-    @Override
-    public UserDetails loadUserById(Long id) {
-        return userRepository.findById(id).orElseThrow();
-    }
 }

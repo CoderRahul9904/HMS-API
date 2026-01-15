@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class CreateStaffController {
 
