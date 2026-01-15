@@ -9,6 +9,7 @@ import com.hms.api.repository.StaffRepository;
 import com.hms.api.services.staff.StaffImpl;
 import com.hms.api.util.GenerateTokenUtil;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,23 +17,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 @Transactional
 public class StaffService implements StaffImpl {
 
-    private AuthenticationManager authenticationManager;
-    private GenerateTokenUtil generateTokenUtil;
+    private final AuthenticationManager authenticationManager;
+    private final GenerateTokenUtil generateTokenUtil;
     private final StaffRepository staffRepository;
     private final ModelMapper modelMapper;
 
-    public StaffService(StaffRepository staffRepository, ModelMapper modelMapper) {
-        this.staffRepository = staffRepository;
-        this.modelMapper = modelMapper;
-    }
 
     public CreateStaffDto createStaff(String id,CreateStaffDto dto) {
-        Staff staff=staffRepository.findByStaffCode(id).orElse(null);
-        if(staff==null) throw new IllegalArgumentException("Staff not found");
-        staff.setStaffCode(dto.getStaffCode());
+        Staff staff=modelMapper.map(dto, Staff.class);
+        staff.setStaffCode(id);
         staff.setFirstName(dto.getFirstName());
         staff.setLastName(dto.getLastName());
         staff.setRole(dto.getRole());
@@ -51,7 +48,7 @@ public class StaffService implements StaffImpl {
         User user=(User) authentication.getPrincipal();
 
         String token=generateTokenUtil.generateJwtAccessToken(user);
-        return new LoginStaffResponseDto(token, user.getId());
+        return new LoginStaffResponseDto(token, user.getStaffCode());
     }
 
 
