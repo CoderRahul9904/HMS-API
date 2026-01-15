@@ -14,7 +14,7 @@ public class UserResponseDto {
     private String fullName;
     private Role role;
     private Boolean isActive;
-    private Long staffId;
+    private String staffCode;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
