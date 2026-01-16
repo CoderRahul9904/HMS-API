@@ -40,8 +40,7 @@ public class StaffService implements StaffImpl {
 
 
     @Override
-    public LoginStaffResponseDto loginStaff(String staffCode, LoginStaffRequestDto dto) {
-        if(staffRepository.findByStaffCode(staffCode).isEmpty()) throw new IllegalArgumentException("Staff not found");
+    public LoginStaffResponseDto loginStaff(LoginStaffRequestDto dto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
         );
