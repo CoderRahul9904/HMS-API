@@ -14,8 +14,8 @@ public class LoginStaff {
 
     private final StaffService staffService;
 
-    @PostMapping("/users/login/{staffCode}")
-    public ResponseEntity<LoginStaffResponseDto> loginStaff(@PathVariable String staffCode,@RequestBody LoginStaffRequestDto loginStaffRequestDto) {
-        return ResponseEntity.ok(staffService.loginStaff(staffCode, loginStaffRequestDto));
+    @PostMapping("/users/login")
+    public ResponseEntity<LoginStaffResponseDto> loginStaff(@RequestBody LoginStaffRequestDto loginStaffRequestDto) {
+        return ResponseEntity.ok(staffService.loginStaff(loginStaffRequestDto));
     }
 }
