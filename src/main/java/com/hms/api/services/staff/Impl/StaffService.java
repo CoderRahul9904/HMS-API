@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,9 +28,9 @@ public class StaffService implements StaffImpl {
     private final ModelMapper modelMapper;
 
 
-    public CreateStaffDto createStaff(String id,CreateStaffDto dto) {
+    public CreateStaffDto createStaff(User user,CreateStaffDto dto) {
         Staff staff=modelMapper.map(dto, Staff.class);
-        staff.setStaffCode(id);
+        staff.setStaffCode(user.getStaffCode());
         staff.setFirstName(dto.getFirstName());
         staff.setLastName(dto.getLastName());
         staff.setRole(dto.getRole());
@@ -45,7 +46,6 @@ public class StaffService implements StaffImpl {
                 new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword())
         );
         User user=(User) authentication.getPrincipal();
-
         String token=generateTokenUtil.generateJwtAccessToken(user);
         return new LoginStaffResponseDto(token, user.getStaffCode());
     }
