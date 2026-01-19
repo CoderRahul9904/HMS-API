@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -16,7 +17,10 @@ public class LoginStaffController {
 
     @PostMapping("/users/login")
     public ResponseEntity<LoginStaffResponseDto> loginStaff(@RequestBody LoginStaffRequestDto loginStaffRequestDto) {
-        System.out.println("LOGIN CONTROLLER HIT");
         return ResponseEntity.ok(staffService.loginStaff(loginStaffRequestDto));
     }
 }
+
+
+
+
