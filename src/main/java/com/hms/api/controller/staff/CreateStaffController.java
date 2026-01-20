@@ -17,6 +17,7 @@ public class CreateStaffController {
     private final StaffService staffService;
     @PostMapping("/users/create")
     public ResponseEntity<CreateStaffDto> registerStaffInfo(@AuthenticationPrincipal User user, @RequestBody CreateStaffDto createStaffDto) {
+        System.out.println(user);
         return ResponseEntity.ok(staffService.createStaff(user,createStaffDto));
     }
 }
