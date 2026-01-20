@@ -26,10 +26,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final GenerateTokenUtil generateTokenUtil;
     private final HandlerExceptionResolver handlerExceptionResolver;
 
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getServletPath().startsWith("/auth");
-    }
 
 
     @Override
