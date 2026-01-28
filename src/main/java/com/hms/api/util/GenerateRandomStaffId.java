@@ -8,13 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class GenerateRandomStaffId {
 
-    private final JdbcTemplate jdbc;
-
-    public GenerateRandomStaffId(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
-    }
-
-
     public String generateEmployeeCode(Role role, Long id) {
         if (id == null) {
             throw new IllegalArgumentException("User ID must not be null when generating staff code");
