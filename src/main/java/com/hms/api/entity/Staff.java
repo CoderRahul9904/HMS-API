@@ -22,7 +22,6 @@ public class Staff {
     @Column(unique = true, nullable = false)
     private String staffCode;
 
-    private String firstName;
     private String lastName;
     private String department;
     private String designation;
