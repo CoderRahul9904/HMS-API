@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "patients")
@@ -52,6 +53,9 @@ public class Patient {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy ="patient")
+    private List<Appointment> appointments;
 
     @Version
     private Integer version;
