@@ -7,4 +7,5 @@ public enum Role {
     RECEPTIONIST,
     BILLER,
     PATIENT,
+    SECURITY
 }
