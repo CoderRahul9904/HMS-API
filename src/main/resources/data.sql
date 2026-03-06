@@ -143,3 +143,9 @@
 --       ('N00003', 'Priya', 'Sharma', 'Nursing', 'Staff Nurse', 'NURSE', '2023-03-20'),
 --       ('REC00004', 'Ravi', 'Verma', 'Front Desk', 'Receptionist', 'RECEPTIONIST', '2023-08-01'),
 --       ('B00005', 'Sunita', 'Mehta', 'Billing', 'Billing Executive', 'BILLER', '2023-09-12');
+
+
+-- INSERT INTO insurance (provider_name, policy_number, coverage_amount, expiry_date)
+-- VALUES
+--     ('Star Health', 'STAR-IND-9821', 500000, '2026-12-31'),
+--     ('HDFC ERGO', 'HDFC-ERGO-2219', 300000, '2025-08-15');
