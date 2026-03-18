@@ -1,9 +1,11 @@
 package com.hms.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(
@@ -40,6 +42,14 @@ public class Department {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "head_doctor_id", unique = true)
+    private Doctor headDoctor;
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Doctor> doctors;
 
     @PrePersist
     void onCreate() {
