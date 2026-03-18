@@ -21,9 +21,14 @@ public class Staff {
 
     @Column(unique = true, nullable = false)
     private String staffCode;
+
     private String firstName;
     private String lastName;
-    private String department;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
     private String designation;
 
     @Enumerated(EnumType.STRING)
