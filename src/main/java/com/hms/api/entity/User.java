@@ -1,11 +1,11 @@
 package com.hms.api.entity;
 
 import com.hms.api.entity.type.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,9 +19,9 @@ import java.util.List;
         indexes = {@Index(name = "idx_users_username", columnList = "username")})
 @Getter
 @Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User implements UserDetails {
 
     @Id
@@ -70,6 +70,7 @@ public class User implements UserDetails {
         this.updatedAt = LocalDateTime.now();
     }
 
+    // UserDetails implementation
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(() -> "ROLE_" + role.name());
@@ -80,5 +81,28 @@ public class User implements UserDetails {
         return passwordHash;
     }
 
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return Boolean.TRUE.equals(isActive);
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return Boolean.TRUE.equals(isActive);
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return Boolean.TRUE.equals(isActive);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return Boolean.TRUE.equals(isActive);
+    }
 }
