@@ -1,5 +1,6 @@
 package com.hms.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,9 +20,14 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "staff_id", unique = true)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "staff_id", unique = true, nullable = false)
     private Staff staff;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    @JsonIgnore
+    private Department department;
 
     private String specialization;
     private String qualification;
@@ -31,5 +37,10 @@ public class Doctor {
 
     private LocalDate joiningDate;
 
+    @Column(nullable = false)
     private Boolean isActive = true;
+
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Appointment> appointments;
 }
