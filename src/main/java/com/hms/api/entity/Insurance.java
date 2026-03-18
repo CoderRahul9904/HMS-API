@@ -31,4 +31,5 @@ public class Insurance {
     private Double coverageAmount;
 
     private String expiryDate;
+
 }
