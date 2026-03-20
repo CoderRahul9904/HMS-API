@@ -3,8 +3,10 @@ package com.hms.api.services.staff.Impl;
 import com.hms.api.dto.staff.CreateStaffDto;
 import com.hms.api.dto.staff.LoginStaffRequestDto;
 import com.hms.api.dto.staff.LoginStaffResponseDto;
+import com.hms.api.entity.Department;
 import com.hms.api.entity.Staff;
 import com.hms.api.entity.User;
+import com.hms.api.repository.DepartmentRepository;
 import com.hms.api.repository.StaffRepository;
 import com.hms.api.services.staff.StaffImpl;
 import com.hms.api.util.GenerateTokenUtil;
@@ -25,6 +27,7 @@ public class StaffService implements StaffImpl {
     private final AuthenticationManager authenticationManager;
     private final GenerateTokenUtil generateTokenUtil;
     private final StaffRepository staffRepository;
+    private final DepartmentRepository departmentRepository;
     private final ModelMapper modelMapper;
 
 
@@ -34,7 +37,11 @@ public class StaffService implements StaffImpl {
         staff.setFirstName(dto.getFirstName());
         staff.setLastName(dto.getLastName());
         staff.setRole(dto.getRole());
-        staff.setDepartment(dto.getDepartment());
+        Department department = departmentRepository
+                .findByCode(dto.getDepartment())
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+
+        staff.setDepartment(department);
         return modelMapper.map(staffRepository.save(staff), CreateStaffDto.class);
     }
 
